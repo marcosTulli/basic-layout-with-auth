@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 import AuthForm from "./AuthForm";
 import { AccessTypes } from "@/models/enums";
 import ErrorContainer from "@/components/common/error/ErrorContainer";
@@ -27,7 +27,13 @@ const AuthFormContainer = ({
       id={`${tabIdPrefix}-panel-${value}`}
       aria-labelledby={`${tabIdPrefix}-${value}`}
       hidden={false}
-      sx={{ p: 2 }}
+      sx={{
+        p: 2,
+        minHeight: 450,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+      }}
     >
       {isLoading ? (
         <Box
@@ -40,8 +46,8 @@ const AuthFormContainer = ({
         </Box>
       ) : (
         <>
-          <ErrorContainer error={error} />
           <AuthForm mode={value} onSubmit={onSubmit} isLoading={isLoading} />
+          <ErrorContainer error={error} />
         </>
       )}
     </Box>
