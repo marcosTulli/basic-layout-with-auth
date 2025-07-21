@@ -24,7 +24,7 @@ export function NavigationItem({ text, href, icon, isOpen }: SidebarItemProps) {
   const isMobile = useMediaQuery(theme.breakpoints.down(500));
 
   const handleClick = () => {
-    if (isMobile && isSideBarOpen) toggleSideBar();
+    if (isMobile) toggleSideBar();
   };
 
   return (
@@ -37,6 +37,8 @@ export function NavigationItem({ text, href, icon, isOpen }: SidebarItemProps) {
             justifyContent: "initial",
             px: 2.5,
             color: "secondary.main",
+            display: "flex",
+            alignItems: "center",
             whiteSpace: "nowrap",
           }}
         >
