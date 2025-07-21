@@ -1,6 +1,7 @@
 "use client";
 
 import type React from "react";
+import Link from "next/link";
 import {
   ListItem,
   ListItemButton,
@@ -18,40 +19,40 @@ interface SidebarItemProps {
 }
 
 export function NavigationItem({ text, href, icon, isOpen }: SidebarItemProps) {
-  const { toggleSideBar } = useSidebar();
+  const { toggleSideBar, isSideBarOpen } = useSidebar();
   const { theme } = useAppTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down(500));
 
   const handleClick = () => {
-    if (isMobile) toggleSideBar();
+    if (isMobile && isSideBarOpen) toggleSideBar();
   };
 
   return (
     <ListItem disablePadding sx={{ display: "block" }}>
-      <ListItemButton
-        component="a"
-        href={href}
-        onClick={handleClick}
-        sx={{
-          minHeight: 48,
-          justifyContent: "initial",
-          px: 2.5,
-          color: "secondary.main",
-          whiteSpace: "nowrap",
-        }}
-      >
-        <ListItemIcon
+      <Link href={href} passHref legacyBehavior>
+        <ListItemButton
+          onClick={handleClick}
           sx={{
-            minWidth: 0,
-            mr: isOpen ? 3 : "auto",
-            justifyContent: "center",
+            minHeight: 48,
+            justifyContent: "initial",
+            px: 2.5,
             color: "secondary.main",
+            whiteSpace: "nowrap",
           }}
         >
-          {icon}
-        </ListItemIcon>
-        <ListItemText primary={text} sx={{ opacity: isOpen ? 1 : 0 }} />
-      </ListItemButton>
+          <ListItemIcon
+            sx={{
+              minWidth: 0,
+              mr: isOpen ? 3 : "auto",
+              justifyContent: "center",
+              color: "secondary.main",
+            }}
+          >
+            {icon}
+          </ListItemIcon>
+          <ListItemText primary={text} sx={{ opacity: isOpen ? 1 : 0 }} />
+        </ListItemButton>
+      </Link>
     </ListItem>
   );
 }
