@@ -42,6 +42,7 @@ export const Drawer = styled(MuiDrawer, {
 
     // Mobile styles
     [theme.breakpoints.down(500)]: {
+      zIndex: 1300,
       width: "100vw",
       transform: open ? "translateX(0)" : "translateX(-100%)",
       transition: theme.transitions.create("transform", {

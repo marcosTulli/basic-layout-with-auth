@@ -33,6 +33,8 @@ export const Main = styled("main", {
     [theme.breakpoints.down(500)]: {
       marginLeft: 0,
       width: "100%",
+      pointerEvents: open ? "none" : "auto",
+      filter: open ? "blur(2px)" : "none",
       overflowX: "hidden",
     },
   })
